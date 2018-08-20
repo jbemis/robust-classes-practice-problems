@@ -55,7 +55,7 @@ public class Main {
         if (userFareChoice.equalsIgnoreCase("Adult")) {
             purchaseAdultFare(card);
         } else if (userFareChoice.equalsIgnoreCase("Concession")) {
-            purcahseConcessionFare(card);
+            purchaseConcessionFare(card);
         } else {
             System.out.println("That is not a valid fare type.");
         }
@@ -63,7 +63,7 @@ public class Main {
 
     private static void purchaseAdultFare(BusFareCard c) {
         try {
-            //TODO: what kind of exception are we expecting to catch here? Replace this todo with the method call
+            card.purchaseAdultFare();
             gotoinfoPage();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -71,9 +71,9 @@ public class Main {
         }
     }
 
-    private static void purcahseConcessionFare(BusFareCard c) {
+    private static void purchaseConcessionFare(BusFareCard c) {
         try {
-            //TODO: what kind of exception are we expecting to catch here? Replace this todo with the method call
+            card.purchaseConcessionTicket();
             gotoinfoPage();
         } catch (Exception e) {
             System.out.println(e.getMessage());

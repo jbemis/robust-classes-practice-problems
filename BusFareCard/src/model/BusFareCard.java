@@ -38,7 +38,15 @@ public class BusFareCard {
     //          otherwise subtract cost of the adult fare from the balance
     //          and set the fareLoaded field to true
     public void purchaseAdultFare() throws IllegalAgeException, NoBalanceException {
-        //TODO: complete the implementation of this method
+        if (ownerAge < AGE_CUTOFF) {
+            throw new IllegalAgeException(ownerAge + " is below the age limit.");
+        }
+        if (balance < 0) {
+            throw new NoBalanceException("$" + balance + " is not a valid amount for this transaction.");
+        } else {
+            balance = balance - ADULT_FARE;
+            fareLoaded = true;
+        }
     }
 
     // MODIFIES: this
@@ -47,21 +55,37 @@ public class BusFareCard {
     //          otherwise subtract cost of a concession fare from the balance
     //          and set the fareLoaded field to true
     public void purchaseConcessionTicket() throws IllegalAgeException, NoBalanceException {
-        //TODO: complete the implementation of this method
+        if (ownerAge > AGE_CUTOFF) {
+            throw new IllegalAgeException(ownerAge + " is above the age limit.");
+        }
+        if (balance < 0) {
+            throw new NoBalanceException("$" + balance + " is not a valid amount for this transaction.");
+        } else {
+            balance = balance - CONCESSION_FARE;
+            fareLoaded = true;
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: if amount < 0, throws IllegalAmountException
     //          otherwise: loads the specified amount onto the card's balance field
     public void reloadBalance(double amount) throws IllegalAmountException {
-        //TODO: complete the implementation of this method
+        if (amount < 0) {
+            throw new IllegalAmountException("$" + balance + " is not a valid amount for this transaction.");
+        } else {
+            balance = balance + amount;
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: if the fare is not loaded, throws MissingFareException
     //          otherwise, sets fareLoaded to false
     public void boardBus() throws MissingFareException {
-        //TODO: complete the implementation of this method
+        if (!fareLoaded) {
+            throw new MissingFareException("Fare not loaded");
+        } else {
+            fareLoaded = false;
+        }
     }
 
 
